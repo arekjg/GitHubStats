@@ -1,0 +1,162 @@
+﻿:root {
+  --text-color: #bfbfbf;
+  --hover-color: #dedede;
+  --bg-color: black;
+}
+
+* {
+  color: var(--text-color);
+  /* background-color: var(--bg-color); */
+}
+
+body {
+  background-color: var(--bg-color);
+  height: 100%;
+}
+
+.app-container {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+.app-container::after {
+  content: '';
+  display: block;
+}
+
+.content {
+  text-align: center;
+  padding-top: 30px;
+}
+
+.header {
+  padding-top: 20px;
+  height: 60px;
+}
+
+.header,
+.footer {
+  text-align: center;
+  color: var(--text-color);
+  margin: auto;
+  width: 100%;
+}
+
+.footer {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 50px;
+  margin-bottom: 0px;
+}
+
+.footer p {
+  transform: translateY(-13px);
+}
+
+.btn {
+  display: block;
+  height: 45px;
+  stroke: #545454;
+}
+
+.btn:hover {
+  cursor: pointer;
+  stroke: var(--text-color);
+  fill: var(--hover-color);
+  color: var(--hover-color);
+}
+
+.btn-prev {
+  left: 0;
+  margin-right: auto;
+}
+
+.btn-next {
+  right: 0;
+  margin-left: auto;
+}
+
+.btn-stats {
+  fill: var(--text-color);
+  width: 60px;
+  height: 115px;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+a {
+  text-decoration: none;
+  color: #d8d8d8;
+}
+
+h2 {
+  margin-top: 0px;
+}
+
+.spinnerWrapper {
+  height: 60px;
+}
+
+input {
+  color: white;
+  background-color: rgb(61, 61, 61);
+}
+
+.error {
+  color: red;
+}
+
+/* Popup style */
+.popup-box {
+  position: fixed;
+  background: #000000bf;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+
+.box {
+  position: relative;
+  width: 70%;
+  margin: 0 auto;
+  height: auto;
+  max-height: 85vh;
+  margin-top: 80px;
+  background: var(--bg-color);
+  border-radius: 20px;
+  padding: 20px;
+  border: 3px solid #545454;
+  overflow: auto;
+}
+
+.close-icon {
+  content: "x";
+  cursor: pointer;
+  position: fixed;
+  right: calc(15% - 30px);
+  top: 75px;
+  background: #bbbbbb;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  line-height: 20px;
+  text-align: center;
+  border: 2px solid #545454;
+  color: #383838;
+  font-size: 20px;
+}
+
+#gh-ico {
+  height: 30px;
+  transform: translateY(8px);
+}
+
+/* div {
+  border: 1px solid red;
+} */
