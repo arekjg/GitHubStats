@@ -4,7 +4,7 @@ const Footer = () => {
       <p>
         Created by Arkadiusz Gubała&emsp;
         <a
-          href="#"
+          href="https://github.com/arekjg/GitHubStats"
           target="_blank"
           rel="noreferrer"
         >

@@ -2,7 +2,7 @@
 
 import LanguagesChart from "./LanguagesChart";
 
-const Popup = ({ userData, languagesData, contributionsData, handleClose }) => {
+const Statistics = ({ userData, languagesData, contributionsData }) => {
   const renderTotal = () => {
     let total = 0;
     contributionsData.forEach((el) => {
@@ -13,7 +13,6 @@ const Popup = ({ userData, languagesData, contributionsData, handleClose }) => {
     return <div>Total contributions: {total}</div>;
   };
 
-  // TODO - fix key
   const renderContributions = () => {
     return contributionsData.map((c) => (
       <div
@@ -47,39 +46,30 @@ const Popup = ({ userData, languagesData, contributionsData, handleClose }) => {
   };
 
   return (
-    <div className="popup-box">
-      <div className="box">
-        <span className="close-icon" onClick={handleClose}>
-          x
-        </span>
-        <>
-          <h3>Your GitHub statistics</h3>
-          <div>
-            Name: {userData.name}
-            <br />
-            Username: {userData.login}
-            <br />
-            {userData.created_at && renderCreationDate()}
-            <br />
-            <br />
-            Number of repositories:{" "}
-            {userData.public_repos + userData.owned_private_repos} (
-            {userData.public_repos} public / {userData.owned_private_repos}{" "}
-            private)
-            <br />
-            <br />
-            {contributionsData && renderContributions()}
-            {contributionsData && renderTotal()}
-          </div>
-          <br />
-          <LanguagesChart
-            title="Programming Languages"
-            languagesData={{ languagesData }}
-          />
-        </>
+    <>
+      <h3>Your GitHub statistics</h3>
+      <div>
+        Name: {userData.name}
+        <br />
+        Username: {userData.login}
+        <br />
+        {userData.created_at && renderCreationDate()}
+        <br />
+        Number of repositories:{" "}
+        {userData.public_repos + userData.owned_private_repos} (
+        {userData.public_repos} public / {userData.owned_private_repos} private)
+        <br />
+        <br />
+        {contributionsData && renderContributions()}
+        {contributionsData && renderTotal()}
       </div>
-    </div>
+      <br />
+      <LanguagesChart
+        title="Programming Languages"
+        languagesData={{ languagesData }}
+      />
+    </>
   );
 };
 
-export default Popup;
+export default Statistics;

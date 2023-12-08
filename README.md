@@ -24,15 +24,11 @@ Then, it creates an infographic with obtained data.
 ### GitHub Token
 A GitHub access token is required for the application to obtain access to user's data.
 
-1. Go to:
-```
-your profile > Settings > Developer settings > Personal access tokens > Tokens (classic)
-```
-or just go to the page [https://github.com/settings/tokens](https://github.com/settings/tokens).
+1. Go to [https://github.com/settings/tokens](https://github.com/settings/tokens)
 
 2. Click on
 `Generate new token > Generate new token (classic)`
-and create a new token with following scopes selected:
+and create a new token with following scopes selected:\
 ![Token_scopes](img/scopes.png)
 
 ### Installation
