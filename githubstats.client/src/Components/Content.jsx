@@ -14,8 +14,12 @@ const Content = () => {
       setUserData(userData);
       setLanguagesData(languagesData);
       setContributionsData(contributionsData);
+      setDisplayStats(true);
     }
-    setDisplayStats(true);
+  };
+
+  const reset = () => {
+    setDisplayStats(false);
   };
 
   return (
@@ -28,6 +32,12 @@ const Content = () => {
           languagesData={languagesData}
           contributionsData={contributionsData}
         />
+      )}
+
+      {displayStats && (
+        <p className="btn" onClick={reset}>
+          TRY AGAIN
+        </p>
       )}
     </>
   );

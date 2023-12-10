@@ -19,13 +19,15 @@ const Credentials = ({ updateStates }) => {
   const loginRef = useRef();
   const tokenRef = useRef();
 
+  const errorMessage = "An error occured. Check if your credentials are correct.";
+
   const fetchData = async () => {
     const userObject = await getUserData(
       loginRef.current.value,
       tokenRef.current.value
     );
     if (userObject.errorMessage) {
-      setFetchError("An error occured. Check if your credentials are correct.");
+      setFetchError(errorMessage);
       console.log(userObject.errorMessage);
       return;
     }
@@ -40,7 +42,7 @@ const Credentials = ({ updateStates }) => {
       tokenRef.current.value
     );
     if (languagesObject.errorMessage) {
-      setFetchError("An error occured. Check if your credentials are correct.");
+      setFetchError(errorMessage);
       console.log(languagesObject.errorMessage);
       return;
     }
@@ -52,7 +54,7 @@ const Credentials = ({ updateStates }) => {
       creationYear
     );
     if (contributionsObject.errorMessage) {
-      setFetchError("An error occured. Check if your credentials are correct.");
+      setFetchError(errorMessage);
       console.log(contributionsObject.errorMessage);
       return;
     }
