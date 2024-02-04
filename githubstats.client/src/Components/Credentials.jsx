@@ -124,7 +124,7 @@ const Credentials = ({ updateStates }) => {
         <>
           <strong>Hello {userData.name}!</strong>
           <br />
-          Please wait, yout stats are being fetched... It may take a while
+          Please wait, your stats are being fetched... It may take a while
           depending on the number of your repositories and contributions.
           <br />
           {!languagesData && <div>Fetching languages data...</div>}

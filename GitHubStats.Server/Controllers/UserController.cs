@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 
-namespace GitHubStatsApi
+namespace GitHubStats
 {
     [ApiController]
     [Route("[controller]")]
@@ -13,7 +13,7 @@ namespace GitHubStatsApi
         {
             try
             {
-                using (HttpClient client = new HttpClient())
+                using (var client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.github+json"));

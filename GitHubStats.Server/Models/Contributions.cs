@@ -1,4 +1,4 @@
-﻿namespace GitHubStatsApi
+﻿namespace GitHubStats
 {
     public class ContributionsRoot
     {

@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.Text;
 
-namespace GitHubStatsApi
+namespace GitHubStats
 {
     [ApiController]
     [Route("[controller]")]
@@ -14,7 +14,7 @@ namespace GitHubStatsApi
         {
             try
             {
-                using (HttpClient client = new HttpClient())
+                using (var client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.github+json"));
@@ -23,18 +23,18 @@ namespace GitHubStatsApi
                     client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
                     client.BaseAddress = new Uri("https://api.github.com/graphql");
 
-                    Dictionary<string, string> dic = new Dictionary<string, string>
+                    var dict = new Dictionary<string, string>
                     {
                         { "login", $"{login}" }
                     };
 
-                    List<int> years = new List<int>();
+                    var years = new List<int>();
                     for (int i = creationYear; i <= DateTime.Now.Year; i++)
                     {
                         years.Add(i);
                     }
 
-                    List<ContributionsRoot> contributions = new List<ContributionsRoot>();
+                    var contributions = new List<ContributionsRoot>();
                     // contributionsCollection (date from - date to)
                     // example:
                     // contributionsCollection(from:""2020-05-05T00:00:00Z"", to:""2020-05-05T00:00:00Z"") {
@@ -62,7 +62,7 @@ namespace GitHubStatsApi
                                             }
                                         }
                                     }",
-                            variables = dic
+                            variables = dict
                         };
 
                         var request = new HttpRequestMessage()
