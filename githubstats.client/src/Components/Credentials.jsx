@@ -19,7 +19,8 @@ const Credentials = ({ updateStates }) => {
   const loginRef = useRef();
   const tokenRef = useRef();
 
-  const errorMessage = "An error occured. Check if your credentials are correct.";
+  const errorMessage =
+    "An error occured. Check if your credentials are correct.";
 
   const fetchData = async () => {
     const userObject = await getUserData(
@@ -39,7 +40,8 @@ const Credentials = ({ updateStates }) => {
 
     const languagesObject = await getLanguagesData(
       loginRef.current.value,
-      tokenRef.current.value
+      tokenRef.current.value,
+      userObject.data.public_repos + userObject.data.owned_private_repos
     );
     if (languagesObject.errorMessage) {
       setFetchError(errorMessage);

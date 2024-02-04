@@ -21,22 +21,34 @@ namespace GitHubStats
                     client.DefaultRequestHeaders.Add("User-Agent", $"{login}");
                     client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
 
-                    string responseBody = "";
-                    HttpResponseMessage response = client.GetAsync("https://api.github.com/user/repos?per_page=100").Result;            // max 100 repos per page, if more - proceed to the next page: &page=2
-                    if (response.IsSuccessStatusCode)
-                    {
-                        responseBody = response.Content.ReadAsStringAsync().Result;
-                    }
+                    int pageCount = (int)Math.Ceiling(repoCount / 100.0);
+                    var roots = new List<Repo>();
 
-                    var root = JsonConvert.DeserializeObject<List<Repo>>(responseBody);
-                    if (root == null)
+                    for (int i = 0; i < pageCount; i++)
                     {
-                        return null;
+                        string responseBody = "";
+                        HttpResponseMessage response = client.GetAsync($"https://api.github.com/user/repos?per_page=100&page={i + 1}").Result;
+                        
+                        if (response.IsSuccessStatusCode)
+                        {
+                            responseBody = response.Content.ReadAsStringAsync().Result;
+                        }
+
+                        var root = JsonConvert.DeserializeObject<List<Repo>>(responseBody);
+                        if (root == null)
+                        {
+                            return null;
+                        }
+
+                        foreach (Repo repo in root.Where(r => r.owner.login == $"{login}"))
+                        {
+                            roots.Add(repo);
+                        }
                     }
 
                     var langList = new List<object>();
 
-                    foreach (Repo repo in root.Where(o => o.owner.login == $"{login}"))
+                    foreach (Repo repo in roots.Where(r => r.owner.login == $"{login}"))
                     {
                         string url = repo.languages_url;
 
