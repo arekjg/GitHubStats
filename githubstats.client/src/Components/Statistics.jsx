@@ -1,8 +1,15 @@
 /* eslint-disable react/prop-types */
 
 import LanguagesChart from "./LanguagesChart";
+import ReposChart from "./ReposChart";
 
 const Statistics = ({ userData, languagesData, contributionsData }) => {
+  const reposData = [
+    { y: userData.public_repos, name: "public", color: "#9ed22d" },
+    { y: userData.owned_private_repos, name: "private", color: "#9186ea" },
+  ];
+  console.log(reposData);
+
   const renderTotal = () => {
     let total = 0;
     contributionsData.forEach((el) => {
@@ -55,19 +62,25 @@ const Statistics = ({ userData, languagesData, contributionsData }) => {
         <br />
         {userData.created_at && renderCreationDate()}
         <br />
-        Number of repositories:{" "}
-        {userData.public_repos + userData.owned_private_repos} (
-        {userData.public_repos} public / {userData.owned_private_repos} private)
-        <br />
-        <br />
         {contributionsData && renderContributions()}
         {contributionsData && renderTotal()}
       </div>
       <br />
-      <LanguagesChart
-        title="Languages on GitHub"
-        languagesData={{ languagesData }}
-      />
+      <div>
+        <ReposChart
+          title={`Total repositories: ${
+            userData.public_repos + userData.owned_private_repos
+          }`}
+          reposData={{ reposData }}
+        />
+      </div>
+      <br />
+      <div>
+        <LanguagesChart
+          title="Languages on GitHub"
+          languagesData={{ languagesData }}
+        />
+      </div>
     </>
   );
 };

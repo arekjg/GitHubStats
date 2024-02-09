@@ -16,7 +16,7 @@ class LanguagesChart extends React.Component {
   componentDidMount() {
     const dataPoints = transformObject(this.languagesData.languagesData);
 
-    var chart = new CanvasJS.Chart("chartContainer", {
+    var chart = new CanvasJS.Chart("languagesChartContainer", {
       backgroundColor: "#0d0d0d",
       theme: "dark2",
       exportFileName: "LanguagesChart",
@@ -24,7 +24,7 @@ class LanguagesChart extends React.Component {
       animationEnabled: true,
       title: {
         text: this.title,
-        fontSize: 28
+        fontSize: 28,
       },
       legend: {
         cursor: "pointer",
@@ -72,7 +72,7 @@ class LanguagesChart extends React.Component {
   render() {
     return (
       <div
-        id="chartContainer"
+        id="languagesChartContainer"
         style={{ height: 450 + "px", width: 100 + "%" }}
       ></div>
     );
