@@ -2,6 +2,7 @@
 
 import React from "react";
 import CanvasJSReact from "@canvasjs/react-charts";
+import languageColors from "../languageColors.json";
 
 var CanvasJS = CanvasJSReact.CanvasJS;
 
@@ -23,6 +24,7 @@ class LanguagesChart extends React.Component {
       animationEnabled: true,
       title: {
         text: this.title,
+        fontSize: 28
       },
       legend: {
         cursor: "pointer",
@@ -46,7 +48,8 @@ class LanguagesChart extends React.Component {
       for (const key in inputObject) {
         if (Object.prototype.hasOwnProperty.call(inputObject, key)) {
           const value = inputObject[key];
-          result.push({ y: value, name: key });
+          const color = languageColors[key];
+          result.push({ y: value, name: key, color: color });
         }
       }
       return result;

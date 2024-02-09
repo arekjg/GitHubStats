@@ -65,7 +65,7 @@ const Statistics = ({ userData, languagesData, contributionsData }) => {
       </div>
       <br />
       <LanguagesChart
-        title="Programming Languages"
+        title="Languages on GitHub"
         languagesData={{ languagesData }}
       />
     </>
