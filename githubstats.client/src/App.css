@@ -174,3 +174,8 @@ input {
 /* div {
   border: 1px solid red;
 } */
+
+#contributionsChartContainer, #reposChartContainer {
+  display: inline-block;
+  margin-right: 10px;
+}

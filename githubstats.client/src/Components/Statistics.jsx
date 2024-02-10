@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 
+import ContributionsChart from "./ContributionsChart";
 import LanguagesChart from "./LanguagesChart";
 import ReposChart from "./ReposChart";
 
@@ -8,42 +9,31 @@ const Statistics = ({ userData, languagesData, contributionsData }) => {
     { y: userData.public_repos, name: "public", color: "#9ed22d" },
     { y: userData.owned_private_repos, name: "private", color: "#9186ea" },
   ];
-  console.log(reposData);
 
-  const renderTotal = () => {
+  const totalContrData = [];
+  contributionsData.forEach((c) => {
+    totalContrData.push({
+      label:
+        c.data.user.contributionsCollection.contributionCalendar.weeks[0].firstDay.slice(
+          0,
+          4
+        ),
+      y: c.data.user.contributionsCollection.contributionCalendar
+        .totalContributions,
+      indexLabel:
+        c.data.user.contributionsCollection.contributionCalendar.totalContributions.toString(),
+      color: "#30a14e",
+    });
+  });
+
+  const totalContr = () => {
     let total = 0;
     contributionsData.forEach((el) => {
       total +=
         el.data.user.contributionsCollection.contributionCalendar
           .totalContributions;
     });
-    return <div>Total contributions: {total}</div>;
-  };
-
-  const renderContributions = () => {
-    return contributionsData.map((c) => (
-      <div
-        key={c.data.user.contributionsCollection.contributionCalendar.weeks[0].firstDay.slice(
-          0,
-          4
-        )}
-        id={c.data.user.contributionsCollection.contributionCalendar.weeks[0].firstDay.slice(
-          0,
-          4
-        )}
-      >
-        Contributions in{" "}
-        {c.data.user.contributionsCollection.contributionCalendar.weeks[0].firstDay.slice(
-          0,
-          4
-        )}
-        :{" "}
-        {
-          c.data.user.contributionsCollection.contributionCalendar
-            .totalContributions
-        }
-      </div>
-    ));
+    return total;
   };
 
   const renderCreationDate = () => {
@@ -61,17 +51,18 @@ const Statistics = ({ userData, languagesData, contributionsData }) => {
         Username: {userData.login}
         <br />
         {userData.created_at && renderCreationDate()}
-        <br />
-        {contributionsData && renderContributions()}
-        {contributionsData && renderTotal()}
       </div>
       <br />
       <div>
         <ReposChart
-          title={`Total repositories: ${
+          title={`Repositories: ${
             userData.public_repos + userData.owned_private_repos
           }`}
           reposData={{ reposData }}
+        />
+        <ContributionsChart
+          title={`Contributions: ${totalContr()}`}
+          totalContrData={{ totalContrData }}
         />
       </div>
       <br />

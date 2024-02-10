@@ -26,15 +26,10 @@ class LanguagesChart extends React.Component {
         text: this.title,
         fontSize: 28,
       },
-      legend: {
-        cursor: "pointer",
-        itemclick: explodePie,
-      },
       data: [
         {
           type: "doughnut",
           innerRadius: 100,
-          showInLegend: true,
           toolTipContent: "<b>{name}</b>: {y} (#percent%)",
           indexLabel: "{name} - #percent%",
           dataPoints: dataPoints,
@@ -53,19 +48,6 @@ class LanguagesChart extends React.Component {
         }
       }
       return result;
-    }
-
-    function explodePie(e) {
-      if (
-        typeof e.dataSeries.dataPoints[e.dataPointIndex].exploded ===
-          "undefined" ||
-        !e.dataSeries.dataPoints[e.dataPointIndex].exploded
-      ) {
-        e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
-      } else {
-        e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
-      }
-      e.chart.render();
     }
   }
 
